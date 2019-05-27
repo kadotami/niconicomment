@@ -1,0 +1,19 @@
+{
+  "name": "niconicomment",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "extract texts of commnet out like niconico douga",
+  "icons": {
+    "128": "icon.png"
+  },
+  "content_scripts": [{
+    "matches": ["http://*"],
+    "js": ["script.js"]
+  }],
+  "permissions": [
+    "https://*",
+    "storage"
+  ],
+  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "options_page": "options.html"
+}
