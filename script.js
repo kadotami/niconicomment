@@ -17,7 +17,7 @@ function createCss() {
     var style = document.createElement("style");
     var css = document.createTextNode('\
         #niconicomments { position: fixed; width: 100%; top: 0; z-index: 99999;}\
-        #niconicomments li {position: absolute; width: 100%; z-index: 99999; transition: left 5s linear 0s;}\
+        #niconicomments li {list-style: none; position: absolute; width: 100%; z-index: 99999; transition: left 5s linear 0s;}\
         #niconicomments li.move { left: -1500px !important;}\
     ');
     style.appendChild(css);
