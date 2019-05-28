@@ -17,7 +17,7 @@ function createCss() {
     var style = document.createElement("style");
     var css = document.createTextNode('\
         #niconicomments { position: fixed; width: 100%; top: 0; z-index: 99999;}\
-        #niconicomments li {list-style: none; position: absolute; width: 100%; z-index: 99999; transition: left 5s linear 0s;}\
+        #niconicomments li {list-style: none; position: absolute; width: 100%; z-index: 99999; }\
         #niconicomments li.move { left: -1500px !important;}\
     ');
     style.appendChild(css);
@@ -33,8 +33,11 @@ function appendComments(comments) {
         var top = getRandomInt(window.innerHeight);
         var li = document.createElement("li");
         var font_size = 12 + getRandomInt(25);
+        var duration = 10 + getRandomInt(15);
+        var deray = getRandomInt(10);
         var initial_left = window.innerWidth + getRandomInt(window.innerWidth*2)
         li.style = "top:"+top+"px;\
+                    transition: left "+ duration + "s linear " + deray +"s; \
                     left:"+ initial_left +"px;\
                     font-size:" + font_size +"px;";
         var comment = document.createTextNode(element);
