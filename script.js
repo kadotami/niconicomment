@@ -8,8 +8,23 @@ var start = function() {
     }
 }
 
+function innerJSComments(scripts) {
+    comment = [];
+    for (var i = 0; i < scripts.length; i++) {
+        text = scripts[i].innerText
+        var block = text.match(/\/\*(.*?)\*\//gim);
+        if (!block) block = [];
+        text = text.replace(/https?:\/\//gi, '');
+        var inline = text.match(/\/\/(.*?)\n/gim);
+        if (!inline) inline = [];
+
+        comment.concat(block).concat(inline);
+    }
+    return comment;
+}
+
 function htmlComment(html) {
-    var result = html.match(/<!--(.*?)-->/gi);
+    var result = html.match(/<!--(.*?)-->/gim);
     return result;
 } 
 
@@ -27,7 +42,8 @@ function createCss() {
 function appendComments(comments) {
     var ul = document.createElement("ul");
     ul.id = 'niconicomments';
-    comments.forEach(element => {
+    for (var i = 0; i < comments.length; i++) {
+        var element = comments[i];
         element = element.replace(/<!--/gi, '');
         element = element.replace(/-->/gi, '');
         var top = getRandomInt(window.innerHeight);
@@ -43,7 +59,7 @@ function appendComments(comments) {
         var comment = document.createTextNode(element);
         li.appendChild(comment);
         ul.appendChild(li);
-    });
+    }
     document.body.appendChild(ul);
 }
 
@@ -54,7 +70,13 @@ function getRandomInt(max) {
 (function(){
     createCss()
     var html = document.querySelector('html').outerHTML;
-    appendComments(htmlComment(html));
-
+    var html_comment = htmlComment(html);
+    // var js_comment = jsComment(html);
+    var scripts = document.getElementsByTagName('script');
+    var js_comment = innerJSComments(scripts)
+    console.log(js_comment);
+    var comments = html_comment.concat(js_comment);
+    console.log(comments);
+    appendComments(comments);
     setTimeout(start(),500); 
 })();
