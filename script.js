@@ -25,6 +25,7 @@ function innerJSComments(scripts) {
 
 function htmlComment(html) {
     var result = html.match(/<!--(.*?)-->/gim);
+    if (!result) result = [];
     return result;
 } 
 
