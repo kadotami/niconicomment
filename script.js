@@ -75,9 +75,7 @@ function getRandomInt(max) {
     // var js_comment = jsComment(html);
     var scripts = document.getElementsByTagName('script');
     var js_comment = innerJSComments(scripts)
-    console.log(js_comment);
     var comments = html_comment.concat(js_comment);
-    console.log(comments);
     appendComments(comments);
     setTimeout(start(),500); 
 })();
